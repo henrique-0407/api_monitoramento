@@ -14,7 +14,7 @@ let ultimaMensagem = { mensagem: "Nenhuma mensagem recebida ainda" };
 servidor.post('/mensagem/', (req, resp) => {
     let mensagem = req.body;
     if (mensagem) {
-        ultimaMensagem = mensagem;  // Armazena a última mensagem recebida
+        ultimaMensagem = mensagem;  
         console.log(mensagem);
         resp.status(200).send('');
     } else {
@@ -24,7 +24,7 @@ servidor.post('/mensagem/', (req, resp) => {
 
 servidor.get('/mensagem/', (req, resp) => {
     if (ultimaMensagem) {
-        resp.json(ultimaMensagem);  // Envia a última mensagem recebida
+        resp.json(ultimaMensagem);  
     } else {
         resp.status(400).send('Nenhuma mensagem disponível');
     }
