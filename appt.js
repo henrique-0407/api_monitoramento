@@ -1,7 +1,7 @@
 import express from "express";
 import cors from 'cors';
 
-const PORT = 5050;
+const PORT = 5000;
 
 const servidor = express();
 
@@ -9,7 +9,8 @@ servidor.use(express.json());
 servidor.use(cors());
 let ultimaMensagem = { mensagem: "Nenhuma mensagem recebida ainda" };
 
-servidor.post('/mensagem/', (req, resp) => {
+
+servidor.post('/temp/', (req, resp) => {
     let mensagem = req.body;
     if (mensagem) {
         ultimaMensagem = mensagem;  
@@ -20,15 +21,13 @@ servidor.post('/mensagem/', (req, resp) => {
     }
 });
 
-servidor.get('/mensagem/', (req, resp) => {
+servidor.get('/temp/', (req, resp) => {
     if (ultimaMensagem) {
         resp.json(ultimaMensagem);  
     } else {
         resp.status(400).send('Nenhuma mensagem disponível');
     }
 });
-
-
 
 servidor.listen(PORT, () => {
     console.log('Servidor aberto em http://localhost:' + PORT);
